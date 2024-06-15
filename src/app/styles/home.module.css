@@ -1,5 +1,6 @@
 .main {
     width: 100%;
+    padding: 150px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,24 +31,21 @@
 .sec01 {
     display: flex;
     flex-direction: column;
-}
-
-.sec01 > form {
     width: 700px;
     align-self: center;
-    /* font-family: var(--theme-font); */
     font-size: 1.5rem;
     font-weight: 500;
 }
 
-.sec01 > form > ul > li {
-    margin: 39px 0;
+.sec01 > ul > li {
+    margin: 25px 0;
 }
 
 .sec01 input[type="text"] {
-    padding: 10px;
+    padding: 10px 20px;
     color: #fff;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .sec01 input:focus {
@@ -55,55 +53,56 @@
 }
 
 
-.sec01 > form > ul > li:nth-child(1) > label,
-.sec01 > form > ul > li:nth-child(2) > label {
+.sec01 > ul > li:nth-child(1) > label,
+.sec01 > ul > li:nth-child(2) > label {
     display: block;
     margin: 5px 0;
 }
 
-.sec01 > form > ul > li:nth-child(1) > input,
-.sec01 > form > ul > li:nth-child(2) > input {
+.sec01 > ul > li:nth-child(1) > input,
+.sec01 > ul > li:nth-child(2) > input {
     width: 100%;
     height: 60px;
     border: none;
 }
 
-.sec01 > form > ul > li:nth-child(1) > input {
-    background-color: #466aa0;
+.sec01 > ul > li:nth-child(1) > input {
+    background-color: var(--blue);
 }
-.sec01 > form > ul > li:nth-child(2) > input {
-    background-color: #a04646;                  
+.sec01 > ul > li:nth-child(2) > input {
+    background-color: var(--red);                  
 ;
 }
 
-.sec01 > form > ul > li:nth-child(1) > input::placeholder,
-.sec01 > form > ul > li:nth-child(2) > input::placeholder {
-    color: #ffffff35;
-    font-weight: 500;
+.sec01 > ul > li:nth-child(1) > input::placeholder,
+.sec01 > ul > li:nth-child(2) > input::placeholder {
+    color: #ffffff80;
+    font-weight: 300;
+    font-size: 1rem;
 }
 
-.sec01 > form > ul > li:nth-child(3) {
+.sec01 > ul > li:nth-child(3) {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
 }
 
-.sec01 > form > ul > li:nth-child(3) > div > label {
+.sec01 > ul > li:nth-child(3) > div > label {
     margin-right: 10px;
 }
 
-.sec01 > form > ul > li:nth-child(3) > div > input[type="radio"] {
+.sec01 > ul > li:nth-child(3) > div > input[type="radio"] {
     width: 18px;
     height: 18px;
 }
 
 
-.sec01 > form > ul > li:nth-child(4) > button {
+.sec01 > ul > li:nth-child(4) > button {
     width: 100%;
     padding: 18px 0;
     border: none;
-    background-color: #0066ff;
+    background-color: #343434;
     color: #fff;
     font-size: 1.2rem;
     font-weight: 600;

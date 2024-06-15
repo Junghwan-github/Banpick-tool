@@ -42,8 +42,8 @@ a {
 
 :root {
     /* Colors */ 
-    --red: #9e0000;
-    --blue: #0066ff;
+    --red: #D92027;
+    --blue: #0079FF;
     --bg-00: rgb(10, 20, 40);
     --bg-01: #15171b;
     --text-basic-color: #fff;
@@ -57,7 +57,7 @@ a {
     --theme-font: "GongGothicMedium";
 
     /* Layout */
-    --max-width: 1600px;
+    --max-width: 1350px;
     --container-margin: 20px;
     --container-padding: 20px;
 }
@@ -72,4 +72,7 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }

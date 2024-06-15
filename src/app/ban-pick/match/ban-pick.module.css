@@ -1,0 +1,153 @@
+.main {
+    width: 100%;
+    padding: 30px 0;
+}
+
+.container {
+    width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+.team {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.blue,
+.red {
+    flex: 1;
+    padding: 30px 0;
+}
+
+.time {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    width: 125px;
+    font-size: 0.88rem;
+}
+
+.time > span:nth-child(3) {
+    padding: 0 5px;
+    background-color: #333;
+}
+
+.time > h2 {
+    font-weight: 900;
+    font-size: 1.8rem;
+}
+
+.blue {
+    background-color: #2a82e6;
+}
+
+.blue > h2 {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.red {
+    background-color: #e62a2a;
+}
+
+.red > h2 {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.times {
+    height: 5px;
+    background-color: #fff;
+}
+
+.contents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.champ {
+    width: 700px;
+}
+
+.player {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.item_blue,
+.item_red {
+    position: relative;
+    height: 130px;
+    border-bottom: 1px solid #333;
+}
+
+.item_blue > p {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.item_blue > div {
+    position: absolute;
+    text-align: right;
+    bottom: 10px;
+    right: 10px;
+}
+
+.item_blue > div > img {
+    height: 20px;
+}
+
+
+.item_red > p {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.item_red > div {
+    position: absolute;
+    text-align: left;
+    bottom: 10px;
+    left: 10px;
+}
+
+.item_red > div > img {
+    height: 20px;
+}
+
+.ban_blue,
+.ban_red {
+    margin-top: 15px;
+    display: flex;
+}
+
+.ban_blue div,
+.ban_red div {
+    flex: 1;
+    height: 65px;
+    border: 1px solid #333;
+    margin-left: -1px;
+}
+
+.ban_blue {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.ban_red {
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+}
