@@ -1,0 +1,179 @@
+.contents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.champ {
+    display: flex;
+    flex-direction: column;
+    flex: 1.5;
+    padding: 0 20px;
+    position: relative;
+}
+
+.champ_category {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 13px;
+}
+
+.champ_category > div:first-child {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.champ_category > div:first-child div {
+    margin: 0 10px;
+    height: 20px;
+}
+
+.champ_category > div:first-child div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.champ_category > div:last-child > input {
+    padding: 10px 10px;
+    width: 250px;
+    background: transparent;
+    border: 1px solid #333;
+}
+
+.champ_category > div:last-child > input:focus {
+    outline: 1px solid #555;
+}
+
+.champ_list {
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.champ_list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.champ_list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+}
+
+.champ_list::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.champ_list > ul {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.champ_list > ul > li {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    margin: 0 11px 10px;
+    width: 68px;
+    height: 105px;
+}
+
+.champ_list > ul > li > div {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    transform: scale(1.35);
+    transform-origin: top left;
+    cursor: pointer;
+
+}
+
+.champ_list > ul > li > p {
+    font-size: 0.72rem;
+}
+
+
+
+.champ_action {
+    height: 62px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.champ_action > button {
+    width: 300px;
+    height: 45px;
+    background-color: #274970;
+    color: #fff;
+    border: none;
+    font-family: var(--noto-sans);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0 10px 0 10px;
+    transition: all 0.2s;
+    box-shadow: 0 5px 0 0 #050a0f;
+}
+
+.champ_list > button:hover {
+    background-color: #3f5979;
+ }
+
+.player {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.item_blue,
+.item_red {
+    position: relative;
+    height: 120px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 5px;    
+}
+
+.item_blue > p {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.item_blue > div {
+    position: absolute;
+    text-align: right;
+    bottom: 10px;
+    right: 10px;
+}
+
+.item_blue > div > img {
+    height: 20px;
+}
+
+
+.item_red > p {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.item_red > div {
+    position: absolute;
+    text-align: left;
+    bottom: 10px;
+    left: 10px;
+}
+
+.item_red > div > img {
+    height: 20px;
+}

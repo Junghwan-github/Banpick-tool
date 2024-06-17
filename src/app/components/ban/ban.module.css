@@ -1,0 +1,43 @@
+.ban_card {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+}
+
+
+.ban_blue,
+.ban_red {
+    display: flex;
+    flex: 1;
+}
+
+/* .ban_etc {
+    width: 600px;
+} */
+
+.ban_blue div,
+.ban_red div {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    transform: scale(1.35);
+    transform-origin: top left;
+    margin-right: 30px;  
+}
+
+.ban_red  div:first-child{
+    margin-right: 19px;
+}
+
+.ban_blue {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.ban_red {
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+}

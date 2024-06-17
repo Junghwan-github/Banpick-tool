@@ -3,41 +3,114 @@
 import style from "./ban-pick.module.css";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Header from "../../components/header/header";
+import Body from "../../components/body/body";
+import Modal from "../../components/modal/modal";
 
 const BanPick = () => {
+  // Team Name
   const params = useSearchParams();
   const teamNameBlue = params.get("blue");
   const teamNameRed = params.get("red");
 
-  const [champData, setChampData] = useState([]);
+  const [showModal, setShowModal] = useState(true);
+  const [isTimerActive, setIsTimerActive] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      let res = await fetch(
-        "https://ddragon.leagueoflegends.com/cdn/14.12.1/data/ko_KR/champion.json"
-      );
-      let data = await res.json();
+  // Modal
+  const closeModal = () => {
+    setShowModal(false);
+    setIsTimerActive(true);
+  }
 
-      let champDataArr = Object.keys(data.data).map((key) => {
-        const champ = data.data[key];
-        return {
-          name: champ.name,
-          image: {
-            full: champ.image.full,
-            sprite: champ.image.sprite,
-            x: champ.image.x,
-            y: champ.image.y,
-            w: champ.image.w,
-            h: champ.image.h,
-          },
-        };
-      });
+  // Champ API
+const [champData, setChampData] = useState([]);
 
-      setChampData(champDataArr);
-    };
-    fetchData();
-  }, []);
+ useEffect(() => {
+  const fetchData = async () => {
+    let res = await fetch(
+      "https://ddragon.leagueoflegends.com/cdn/14.12.1/data/ko_KR/champion.json"
+    );
+    let data = await res.json();
 
+    let champDataArr = Object.keys(data.data).map((key) => {
+      const champ = data.data[key];
+      return {
+        name: champ.name,
+        id: champ.id,
+        image: {
+          full: champ.image.full,
+          sprite: champ.image.sprite,
+          x: champ.image.x,
+          y: champ.image.y,
+          w: champ.image.w,
+          h: champ.image.h,
+        },
+        grayscale: false,
+      };
+    });
+
+    setChampData(champDataArr);
+  };
+  fetchData();
+}, []);
+
+
+ // Champ BanPick
+  const [champPickData, setChampPickData] = useState({
+    name: "",
+    id: "",
+    bgImage: "",
+    bgPosition: "",
+  });
+
+  const [selectedChampIndex, setSelectedChampIndex] = useState(null);
+
+  const handleChampClick = (e, index) => {
+    const clickChamp = e.currentTarget;
+    const computedStyle = window.getComputedStyle(clickChamp);
+    const bgImage = computedStyle.backgroundImage;
+    const bgPosition = computedStyle.backgroundPosition;
+    const dataAttr = clickChamp.getAttribute("data-name");
+    const dataAttrId = clickChamp.getAttribute("data-id");
+
+    let bgImageUrl = "";
+    if (bgImage) {
+      const urlMatch = bgImage.match(/url\(["']?([^"']*)["']?\)/);
+      if (urlMatch && urlMatch[1]) {
+        bgImageUrl = urlMatch[1];
+      }
+    }
+
+    setChampPickData({
+      name: dataAttr,
+      id: dataAttrId,
+      bgImage: bgImageUrl,
+      bgPosition: bgPosition,
+    });
+
+    setSelectedChampIndex(index);
+
+    setChampData((prevData) =>
+      prevData.map((champ, i) =>
+        i === index
+          ? { ...champ, grayscale: true }
+          : { ...champ, grayscale: false }
+      )
+    );
+  };
+
+  //Champ SelectButton
+
+  const [isChampSelect, setIsChampSelect] = useState([]);
+
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+    setIsChampSelect((prevIsChampSelect) => [
+      ...prevIsChampSelect,
+      champPickData
+    ]);
+  };
+ 
   const singlePlayData = [
     "icon-top.webp",
     "icon-jgl.webp",
@@ -47,134 +120,15 @@ const BanPick = () => {
   ];
 
   return (
+    
     <main className={style.main}>
       <div className={style.container}>
+      <Modal show={showModal} onClose={closeModal}>
+      </Modal>
         {/* Header */}
-        <div className={style.header}>
-          {/* Name wrap */}
-          <div className={style.team}>
-            {/* Blue Team */}
-            <div className={style.blue}>
-              <h2>{teamNameBlue ? teamNameBlue : "BLUE TEAM"}</h2>
-            </div>
-            {/* Time */}
-            <div className={style.time}>
-              <span>TIME</span>
-              <h2>: 40</h2>
-              <span>BAN / PICK</span>
-            </div>
-            {/* Red Team  */}
-            <div className={style.red}>
-              <h2>{teamNameRed ? teamNameRed : "RED TEAM"}</h2>
-            </div>
-          </div>
-          {/* Time bar */}
-          <div className={style.times}></div>
-          {/* Ban card */}
-          <div className={style.ban_card}>
-            {/* Blue ban */}
-            <div className={style.ban_blue}>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <div className={style.ban_etc}></div>
-            {/* Red ban */}
-            <div className={style.ban_red}>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        </div>
+        <Header teamNameBlue={teamNameBlue} teamNameRed={teamNameRed} isChampSelect={isChampSelect} isActive={isTimerActive} />
         {/* Contents */}
-        <div className={style.contents}>
-          {/* Blue Pick Champ */}
-          <div className={style.player}>
-            {/* Item */}
-            {singlePlayData.map((item, index) => (
-              <div key={index} className={style.item_blue}>
-                {/* Player Info */}
-                {/* Champ Name */}
-                <p>GRAVES</p>
-                <div>
-                  <img src={`../../images/icon/${item}`} alt="position"></img>
-                  <p>PLAYER {index + 1}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* Select Champ */}
-          <div className={style.champ}>
-            <div className={style.champ_category}>
-              <div>
-                <div>
-                  <a href="#">
-                    <img src="../../../images/icon/icon-top.webp" alt="top" />
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <img src="../../../images/icon/icon-jgl.webp" alt="jgl" />
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <img src="../../../images/icon/icon-mid.webp" alt="top" />
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <img src="../../../images/icon/icon-bot.webp" alt="top" />
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <img src="../../../images/icon/icon-spt.webp" alt="top" />
-                  </a>
-                </div>
-              </div>
-              <div>
-                <input type="text" placeholder="챔피언 이름 검색"></input>
-              </div>
-            </div>
-            <div className={style.champ_list}>
-              <ul>
-                {champData.map((champ) => (
-                  <li key={champ.name}>
-                    <div
-                      style={{
-                        "background-image": `url(https://ddragon.leagueoflegends.com/cdn/14.12.1/img/sprite/${champ.image.sprite})`,
-                        "background-position": `-${champ.image.x}px -${champ.image.y}px`,
-                      }}
-                    ></div>
-                    <p>{champ.name}</p>
-                  </li>
-                ))}
-              </ul>
-              <button type="button">챔피언 선택</button>
-            </div>
-          </div>
-          {/* Red Pick Champ */}
-          <div className={style.player}>
-            {/* Item */}
-            {singlePlayData.map((item, index) => (
-              <div key={index} className={style.item_red}>
-                {/* Player Info */}
-                {/* Champ Name */}
-                <p>GRAVES</p>
-                <div>
-                  <img src={`../../images/icon/${item}`} alt="position"></img>
-                  <p>PLAYER {index + 1}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Body champData={champData} onChampListClick={handleChampClick} onChampSelectClick={handleButtonClick} isChampSelect={isChampSelect}/>
       </div>
     </main>
   );
