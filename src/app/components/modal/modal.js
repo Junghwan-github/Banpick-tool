@@ -1,6 +1,6 @@
 import style from "./modal.module.css";
 
-const Modal = ({ show, onClose, children }) => {
+const Modal = ({ show, children }) => {
 
 
   if (!show) {
@@ -9,13 +9,7 @@ const Modal = ({ show, onClose, children }) => {
 
   return (
     <div className={style.overlay}>
-       
       <div className={style.content}>
-        <div className={style.google_ad}>
-        </div>
-        <button className={style.close} onClick={onClose}>
-          시작하기
-        </button>
         {children}
       </div>
     </div>

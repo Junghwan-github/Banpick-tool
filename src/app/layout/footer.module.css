@@ -1,15 +1,23 @@
 .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 50px;
+    height: 20px;
     font-size: 0.85rem;
-    color: #555;
+    color: #999;
 }
 
-.copyright {
-    width: var(--max-width);
-    text-align: center;
+.dev {
+    width: var(--fullHD-width);
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.copyright > span {
+    color: #bbb;
+    font-weight: 800;
+}
+
+.contact {
+    margin-left: 10px;
 }

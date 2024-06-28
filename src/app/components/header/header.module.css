@@ -54,7 +54,7 @@
 }
 
 .times {
-    height: 6px;
+    height: 8px;
     background-color: #333;
 }
 
@@ -62,7 +62,7 @@
     position: relative;
     left: 50%;
     height: 100%;
-    background-color: #ffa600;
-    transition: width 1s linear;
+    background-color: #fff;
     transform: translate(-50%, 0);
 }
+

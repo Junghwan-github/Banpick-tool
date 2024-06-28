@@ -56,8 +56,9 @@ a {
     --select-font: "neurimboGothicRegular";
     --theme-font: "GongGothicMedium";
 
+
     /* Layout */
-    --max-width: 1350px;
+    --fullHD-width: 1320px;
     --container-margin: 20px;
     --container-padding: 20px;
 }
@@ -76,4 +77,35 @@ body {
     height: 100vh;
     overflow: hidden;
     justify-content: center;
+}
+
+
+@keyframes seq1 {
+    from {
+        right: -50%;
+    }
+
+    /* 50% {
+        right: 100%;
+    } */
+
+    to {
+        right: 100%;
+    }
+
+
+}
+
+@keyframes seq2 {
+    from {
+        left: -50%;
+    }
+
+    /* 50% {
+        left: 75%;
+    } */
+
+    to {
+        left: 100%;
+    }
 }

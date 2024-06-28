@@ -3,12 +3,16 @@
 import style from "./styles/home.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import positionChampList from "./data/positionChampListData.json";
+import Modal from "./components/modal/modal";
 
 export default function Home() {
   const router = useRouter();
-
   const [teamName, setTeamName] = useState({});
   const [selectedMode, setSelectedMode] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [isPlayerName, setIsPlayerName] = useState({});
+  const [ws, setWs] = useState(null);
 
   const handleInputValue = (e) => {
     const { name, value } = e.target;
@@ -16,6 +20,7 @@ export default function Home() {
       ...teamName,
       [name]: value,
     });
+    console.log(teamName);
   };
 
   const handleModeChange = (e) => {
@@ -24,12 +29,60 @@ export default function Home() {
 
   const handleStart = (e) => {
     e.preventDefault();
-    if (selectedMode) {
-      const searchParams = new URLSearchParams(teamName).toString();
-      router.push(`/ban-pick/${selectedMode}?${searchParams}`);
+
+    if (selectedMode === "match") {
+      const socket = new WebSocket("ws://localhost:8080");
+
+      socket.onopen = () => {
+        socket.send(JSON.stringify({ type: "create" }));
+      };
+
+      socket.onmessage = (message) => {
+        const data = JSON.parse(message.data);
+        if (data.type === "created") {
+          const { matchId } = data;
+          const blueURL = `${window.location.origin}/ready/${matchId}/blue`;
+          const redURL = `${window.location.origin}/ready/${matchId}/red`;
+
+          const query = new URLSearchParams({
+            blue: JSON.stringify(blueURL),
+            red: JSON.stringify(redURL),
+            teamName: JSON.stringify(teamName),
+            playerName: JSON.stringify(isPlayerName),
+          });
+
+          router.push(`/ready?${query}`);
+        }
+      };
+
+      socket.onerror = (error) => {
+        console.error("WebSocket Error: ", error);
+      };
+
+      setWs(socket);
+    } else if (selectedMode === "single") {
+      const query = new URLSearchParams({
+        teamName: JSON.stringify(teamName),
+        playerName: JSON.stringify(isPlayerName),
+      });
+      router.push(`/ban-pick/${selectedMode}?${query}`);
     } else {
       alert("모드를 선택해주세요");
     }
+  };
+
+  const handlePlayerName = (e) => {
+    const { name, value } = e.target;
+    setIsPlayerName({ ...isPlayerName, [name]: value });
+    console.log(isPlayerName);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const playerSetting = () => {
+    setShowModal(true);
   };
 
   return (
@@ -62,10 +115,15 @@ export default function Home() {
             </li>
             <li>
               <div>
+                <button type="button" onClick={playerSetting}>
+                  플레이어 닉네임 설정
+                </button>
+              </div>
+              <div>
                 <label htmlFor="single-mode">싱글</label>
                 <input
                   type="radio"
-                  id="solo-mode"
+                  id="single-mode"
                   name="mode"
                   value="single"
                   onChange={handleModeChange}
@@ -84,6 +142,71 @@ export default function Home() {
                 ></input>
               </div>
             </li>
+            <Modal show={showModal}>
+              <div className={style.player_setting}>
+                <div>
+                  <h3>플레이어 닉네임</h3>
+                  <span>※ 설정 하지 않을시 PLAYER로 설정됩니다.</span>
+                  <div className={style.player_wrap}>
+                    <div>
+                      <h4>블루팀</h4>
+                      <ul>
+                        {positionChampList.map((position, index) => (
+                          <li key={index}>
+                            <label htmlFor={`blue-${Object.keys(position)}`}>
+                              <img
+                                src={`../../images/icon/icon-${Object.keys(
+                                  position
+                                )}.webp`}
+                                alt={Object.keys(position)}
+                              />
+                            </label>
+                            <input
+                              type="text"
+                              id={`blue-${Object.keys(position)}`}
+                              placeholder={`BLUE ${Object.keys(
+                                position
+                              )[0].toUpperCase()}`}
+                              name={`${Object.keys(position)}Blue`}
+                              onChange={handlePlayerName}
+                            ></input>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>레드팀</h4>
+                      <ul>
+                        {positionChampList.map((position, index) => (
+                          <li key={index}>
+                            <label htmlFor={`blue-${Object.keys(position)}`}>
+                              <img
+                                src={`../../images/icon/icon-${Object.keys(
+                                  position
+                                )}.webp`}
+                                alt={Object.keys(position)}
+                              />
+                            </label>
+                            <input
+                              type="text"
+                              id={`red-${Object.keys(position)}`}
+                              placeholder={`RED ${Object.keys(
+                                position
+                              )[0].toUpperCase()}`}
+                              name={`${Object.keys(position)}Red`}
+                              onChange={handlePlayerName}
+                            ></input>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <button className={style.close} onClick={closeModal}>
+                  확인
+                </button>
+              </div>
+            </Modal>
             <li>
               <button onClick={handleStart}>시작하기</button>
             </li>
