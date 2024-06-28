@@ -1,0 +1,45 @@
+.container {
+    width: var(--fullHD-width);
+    padding: 50px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.container > h1 {
+    padding: 20px;
+}
+
+.container > button {
+    width: 250px;
+    height: 60px;
+    font-family: var(--noto-sans);
+    font-size: 1rem;
+    border: none;
+    background-color: var(--blue);
+    color: #fff;
+    cursor: pointer;
+}
+
+.container > button:disabled {
+    background-color: #0077ff8a;
+}
+
+.ads {
+    margin: 20px 0;
+    width: 1000px;
+    height: 300px;
+    border: 1px solid #333;
+}
+
+.ads > p {
+    text-align: center;
+    color: #333;
+    line-height: 300px;
+}
+
+.info {
+    margin: 0 0 20px;
+    font-size: 1rem;
+}

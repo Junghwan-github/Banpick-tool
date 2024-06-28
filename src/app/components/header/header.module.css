@@ -1,0 +1,68 @@
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+.team {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.blue,
+.red {
+    flex: 1;
+    padding: 25px 0;
+}
+
+.time {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    width: 125px;
+    font-size: 0.88rem;
+}
+
+.time > span:nth-child(3) {
+    padding: 0 5px;
+    background-color: #333;
+    font-size: 0.7rem;
+}
+
+.time > h2 {
+    font-weight: 900;
+    font-size: 1.8rem;
+}
+
+.blue {
+    background-color: var(--blue);
+}
+
+.blue > h2 {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.red {
+    background-color: var(--red);
+}
+
+.red > h2 {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.times {
+    height: 8px;
+    background-color: #333;
+}
+
+.progress_bar {
+    position: relative;
+    left: 50%;
+    height: 100%;
+    background-color: #fff;
+    transform: translate(-50%, 0);
+}
+
