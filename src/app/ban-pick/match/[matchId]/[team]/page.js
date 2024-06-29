@@ -1,6 +1,6 @@
 "use client";
 import style from "./ban-pick.module.css";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Header from "../../../../components/header/header";
 import Body from "../../../../components/body/body";
@@ -50,6 +50,10 @@ const BanPick = ({ params }) => {
         } else if (data.type === "select") {
           // 서버로부터 데이터를 받아 처리
           setIsChampSelect((prevIsChampSelect) => {
+            if(prevIsChampSelect.length >= 20) {
+              setPickTime(0);
+              return prevIsChampSelect;
+            }
             if (!prevIsChampSelect.some((champ) => champ.id === data.champData.id)) {
               return [...prevIsChampSelect, data.champData];
             }
@@ -261,6 +265,7 @@ const BanPick = ({ params }) => {
   const isChampSelectRedIndex = [1, 3, 5, 7, 8, 11, 12, 14, 16, 19];
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <main className={style.main}>
       <div className={style.container}>
         <Header
@@ -282,6 +287,7 @@ const BanPick = ({ params }) => {
         />
       </div>
     </main>
+  </Suspense>
   );
 };
 

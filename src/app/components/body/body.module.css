@@ -117,7 +117,7 @@
 .champ_action > button {
   width: calc(100% - 20px);
   height: 55px;
-  background-color: #19A7CE;
+  background-color: var(--action-color);
   color: #fff;
   border: none;
   font-family: var(--noto-sans);
