@@ -48,6 +48,7 @@
   right: 20px;
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .contact_modal > button > span {
