@@ -42,7 +42,7 @@ export const metadata = {
   verification: {
     google: "OhZfBv2KzFrdoCDuzvbaQknwgaV0M8cQJEp41-vbstA",
     other: {
-      "naver-site-verification": "OhZfBv2KzFrdoCDuzvbaQknwgaV0M8cQJEp41-vbstA",
+      "naver-site-verification": "27d7050d868ef37a5af94a294cb84217fc22ae9f",
     },
   },
 };
