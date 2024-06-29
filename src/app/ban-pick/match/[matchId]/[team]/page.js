@@ -50,6 +50,10 @@ const BanPick = ({ params }) => {
         } else if (data.type === "select") {
           // 서버로부터 데이터를 받아 처리
           setIsChampSelect((prevIsChampSelect) => {
+            if(prevIsChampSelect.length >= 20) {
+              setPickTime(0);
+              return prevIsChampSelect;
+            }
             if (!prevIsChampSelect.some((champ) => champ.id === data.champData.id)) {
               return [...prevIsChampSelect, data.champData];
             }

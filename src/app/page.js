@@ -99,7 +99,7 @@ export default function Home() {
                 <label htmlFor="team-blue">블루팀</label>
                 <input
                   type="text"
-                  placeholder="블루팀 이름을 입력해주세요"
+                  placeholder="블루팀 이름을 입력해주세요. (미 설정 시 BLUE TEAM)"
                   name="blue"
                   id="team-blue"
                   onChange={handleInputValue}
@@ -109,7 +109,7 @@ export default function Home() {
                 <label htmlFor="team-red">레드팀</label>
                 <input
                   type="text"
-                  placeholder="레드팀 이름을 입력해주세요"
+                  placeholder="레드팀 이름을 입력해주세요. (미 설정 시 RED TEAM)"
                   name="red"
                   id="team-red"
                   onChange={handleInputValue}

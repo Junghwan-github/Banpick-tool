@@ -47,6 +47,7 @@ a {
     --bg-00: rgb(10, 20, 40);
     --bg-01: #15171b;
     --text-basic-color: #fff;
+    --action-color: #19A7CE;
 
     /* Fonts */
     --noto-sans: "Noto Sans KR", sans-serif;
