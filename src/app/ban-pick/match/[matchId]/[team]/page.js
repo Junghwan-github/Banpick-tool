@@ -28,7 +28,7 @@ const BanPick = ({ params }) => {
 
   useEffect(() => {
     if (matchId) {
-      const socket = new WebSocket("ws://localhost:8080");
+      const socket = new WebSocket("wss://https://banpick-wc.glitch.me");
   
       socket.onopen = () => {
         console.log("WebSocket connection established");
