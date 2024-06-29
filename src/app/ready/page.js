@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { Suspense } from "react";
 import style from "../styles/home.module.css";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const MatchModUrl = () => {
   const searchParams = useSearchParams();

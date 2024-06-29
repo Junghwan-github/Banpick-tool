@@ -1,7 +1,6 @@
 "use client";
-import { Suspense } from "react";
 import style from "./ban-pick.module.css";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Header from "../../../../components/header/header";
 import Body from "../../../../components/body/body";
