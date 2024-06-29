@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://banpick.vercel.app
+
+# Sitemaps
+Sitemap: https://banpick.vercel.app/sitemap.xml
