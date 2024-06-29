@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import style from "./ban-pick.module.css";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -261,6 +262,7 @@ const BanPick = ({ params }) => {
   const isChampSelectRedIndex = [1, 3, 5, 7, 8, 11, 12, 14, 16, 19];
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <main className={style.main}>
       <div className={style.container}>
         <Header
@@ -282,6 +284,7 @@ const BanPick = ({ params }) => {
         />
       </div>
     </main>
+  </Suspense>
   );
 };
 

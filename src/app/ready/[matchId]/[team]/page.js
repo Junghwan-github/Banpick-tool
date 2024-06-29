@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import style from "./ready.module.css";
@@ -76,28 +77,30 @@ const MatchReady = ({ params }) => {
   };
 
   return (
-    <main>
-      <div className={style.container}>
-        <h1>{team === "blue" ? "블루팀" : "레드팀"} READY PAGE</h1>
-        <div className={style.ads}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <main>
+        <div className={style.container}>
+          <h1>{team === "blue" ? "블루팀" : "레드팀"} READY PAGE</h1>
+          <div className={style.ads}>
             <p>Google Ads</p>
+          </div>
+          <div className={style.info}>
+            <h3>
+              준비 버튼을 클릭후 {team === "blue" ? "레드팀" : "블루팀"} 을
+              기다려주세요.
+            </h3>
+            <p>{team === "blue" ? "레드팀" : "블루팀"} 을 기다리고 있습니다.</p>
+            <p>
+              {team === "blue" ? "레드팀" : "블루팀"} 이 준비 버튼 클릭시 바로
+              시작합니다.
+            </p>
+          </div>
+          <button onClick={handleReady} disabled={ready}>
+            {ready ? "준비 완료" : "준비"}
+          </button>
         </div>
-        <div className={style.info}>
-          <h3>
-            준비 버튼을 클릭후 {team === "blue" ? "레드팀" : "블루팀"} 을
-            기다려주세요.
-          </h3>
-          <p>{team === "blue" ? "레드팀" : "블루팀"} 을 기다리고 있습니다.</p>
-          <p>
-            {team === "blue" ? "레드팀" : "블루팀"} 이 준비 버튼 클릭시 바로
-            시작합니다.
-          </p>
-        </div>
-        <button onClick={handleReady} disabled={ready}>
-          {ready ? "준비 완료" : "준비"}
-        </button>
-      </div>
-    </main>
+      </main>
+    </Suspense>
   );
 };
 

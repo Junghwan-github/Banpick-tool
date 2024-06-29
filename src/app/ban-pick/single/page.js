@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import style from "./ban-pick.module.css";
-import { useEffect, useState } from "react";
+
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import style from "./ban-pick.module.css";
 import Header from "../../components/header/header";
 import Body from "../../components/body/body";
 import Modal from "../../components/modal/modal";
@@ -12,7 +13,7 @@ const BanPick = () => {
   const params = useSearchParams();
   const [isTeamName, setIsTeamName] = useState({});
   const [isPlayerName, setIsPlayerName] = useState({});
-  
+
   useEffect(() => {
     const teamNames = params.get("teamName");
     const playerNames = params.get("playerName");
@@ -119,8 +120,7 @@ const BanPick = () => {
     );
   };
 
-  //Champ SelectButton
-
+  // Champ SelectButton
   const [isChampSelect, setIsChampSelect] = useState([]);
 
   const handleButtonClick = (e) => {
@@ -212,39 +212,40 @@ const BanPick = () => {
     setIsChampSearch(value);
   };
 
-
   const isChampSelectBlueIndex = [0, 2, 4, 6, 9, 10, 13, 15, 17, 18];
   const isChampSelectRedIndex = [1, 3, 5, 7, 8, 11, 12, 14, 16, 19];
 
   return (
-    <main className={style.main}>
-      <div className={style.container}>
-        <Modal show={showModal}>
-        <button className={style.close} onClick={closeModal}>
-          시작하기
-        </button>
-        </Modal>
-        {/* Header */}
-        <Header
-          isTeamName={isTeamName}
-          isChampSelect={isChampSelect}
-          pickTime={pickTime}
-          isChampSelectBlueIndex = {isChampSelectBlueIndex}
-          isChampSelectRedIndex = {isChampSelectRedIndex}
-        />
-        {/* Contents */}
-        <Body
-          champData={champData}
-          onChampListClick={handleChampClick}
-          onChampSelectClick={handleButtonClick}
-          isChampSelect={isChampSelect}
-          champSearch={handleChampSearch}
-          isChampSearch={isChampSearch}
-          setIsChampSearch={setIsChampSearch}
-          isPlayerName={isPlayerName}
-        />
-      </div>
-    </main>
+    <Suspense fallback={<div>Loading...</div>}>
+      <main className={style.main}>
+        <div className={style.container}>
+          <Modal show={showModal}>
+            <button className={style.close} onClick={closeModal}>
+              시작하기
+            </button>
+          </Modal>
+          {/* Header */}
+          <Header
+            isTeamName={isTeamName}
+            isChampSelect={isChampSelect}
+            pickTime={pickTime}
+            isChampSelectBlueIndex={isChampSelectBlueIndex}
+            isChampSelectRedIndex={isChampSelectRedIndex}
+          />
+          {/* Contents */}
+          <Body
+            champData={champData}
+            onChampListClick={handleChampClick}
+            onChampSelectClick={handleButtonClick}
+            isChampSelect={isChampSelect}
+            champSearch={handleChampSearch}
+            isChampSearch={isChampSearch}
+            setIsChampSearch={setIsChampSearch}
+            isPlayerName={isPlayerName}
+          />
+        </div>
+      </main>
+    </Suspense>
   );
 };
 
