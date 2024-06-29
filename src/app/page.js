@@ -32,7 +32,7 @@ export default function Home() {
     e.preventDefault();
 
     if (selectedMode === "match") {
-      const socket = new WebSocket("wss://https://banpick-wc.glitch.me");
+      const socket = new WebSocket("wss://banpick-wc.glitch.me");
 
       socket.onopen = () => {
         socket.send(JSON.stringify({ type: "create" }));
