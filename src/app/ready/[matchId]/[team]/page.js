@@ -41,7 +41,7 @@ const MatchReady = ({ params }) => {
     });
 
     if (matchId && team) {
-      const socket = new WebSocket("wss://https://banpick-wc.glitch.me");
+      const socket = new WebSocket("wss://banpick-wc.glitch.me");
 
       socket.onopen = () => {
         socket.send(JSON.stringify({ type: "join", matchId, team }));
