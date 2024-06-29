@@ -2,6 +2,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
 import { useSearchParams } from "next/navigation";
 import style from "./ban-pick.module.css";
 import Header from "../../components/header/header";
@@ -249,4 +250,4 @@ const BanPick = () => {
   );
 };
 
-export default BanPick;
+export default dynamic(() => Promise.resolve(BanPick), { ssr: false });

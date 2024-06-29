@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import style from "../styles/home.module.css";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState, useRef } from "react";
 
@@ -145,4 +146,4 @@ const MatchModUrl = () => {
   );
 };
 
-export default MatchModUrl;
+export default dynamic(() => Promise.resolve(MatchModUrl), { ssr: false }); 
