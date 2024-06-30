@@ -2,14 +2,22 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import style from "./ban-pick.module.css";
 import Header from "../../components/header/header";
 import Body from "../../components/body/body";
 import Modal from "../../components/modal/modal";
+import KakaoAdfit from "../../components/kakao/kakao";
 
 const BanPick = () => {
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.kakao && window.kakao.adfit) {
+      window.kakao.adfit.load();
+    }
+  }, []);
+
   // Team Name
   const params = useSearchParams();
   const [isTeamName, setIsTeamName] = useState({});
@@ -215,6 +223,7 @@ const BanPick = () => {
 
   const isChampSelectBlueIndex = [0, 2, 4, 6, 9, 10, 13, 15, 17, 18];
   const isChampSelectRedIndex = [1, 3, 5, 7, 8, 11, 12, 14, 16, 19];
+
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

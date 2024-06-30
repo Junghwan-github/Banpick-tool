@@ -80,6 +80,18 @@ body {
     justify-content: center;
 }
 
+.content_container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.kakao_adfit {
+    width: 160px;
+    height: 600px;
+    margin: 0 50px;
+}
+
 
 @keyframes seq1 {
     from {
