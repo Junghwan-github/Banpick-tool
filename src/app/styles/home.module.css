@@ -261,3 +261,14 @@
   .clip.active {
     border: 2px solid #ddd;
   }
+
+  .match_info {
+    display: none;
+    font-size: 0.8rem;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .match_info.active {
+    display: block;
+  }
