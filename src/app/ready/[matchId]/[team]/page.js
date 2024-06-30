@@ -2,6 +2,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import style from "./ready.module.css";
+import KakaoAdfit from "../../../components/kakao/kakao";
 
 const MatchReady = ({ params }) => {
   const { matchId, team } = params;
@@ -77,12 +78,16 @@ const MatchReady = ({ params }) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <main>
+      <main className={style.main}>
         <div className={style.container}>
           <h1>{team === "blue" ? "블루팀" : "레드팀"} READY PAGE</h1>
-          <div className={style.ads}>
-            <p>Google Ads</p>
-          </div>
+          <KakaoAdfit
+            unit="DAN-jsuDFkJ5foTsPjv5"
+            width="300"
+            height="250"
+            className={style.ads}
+            insId="ready_page"
+          />
           <div className={style.info}>
             <h3>
               준비 버튼을 클릭후 {team === "blue" ? "레드팀" : "블루팀"} 을
