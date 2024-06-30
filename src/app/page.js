@@ -144,6 +144,7 @@ export default function Home() {
                   ></input>
                 </div>
               </li>
+              <p className={`${style.match_info} ${selectedMode === "match" ? style.active : ""}`}><span>* 매치 모드</span> - 현재는 무료 서버 사용 중이라 [시작하기] 버튼 클릭후 간헐적 수 초정도 로딩이 발생할 수 있습니다. </p>
               <Modal show={showModal}>
                 <div className={style.player_setting}>
                   <div>
