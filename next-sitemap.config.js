@@ -2,5 +2,18 @@ module.exports = {
     siteUrl: 'https://banpick.vercel.app',
     generateRobotsTxt: true,
     sitemapSize: 7000,
-    outDir: './out'
+    priority: 1,
+    outDir: './out',
+    robotsTxtOptions: {
+      policies: [
+          {
+              userAgent: '*', 
+              allow: '/', 
+              disallow: [
+                  '/ban-pick',
+                  '/ready' 
+              ]
+          },
+      ]
+  }
   };
