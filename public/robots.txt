@@ -1,6 +1,8 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /ban-pick
+Disallow: /ready
 
 # Host
 Host: https://banpick.vercel.app
