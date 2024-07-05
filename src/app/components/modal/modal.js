@@ -1,5 +1,4 @@
 import style from "./modal.module.css";
-import { useEffect } from "react";
 
 const Modal = ({ show, children }) => {
 

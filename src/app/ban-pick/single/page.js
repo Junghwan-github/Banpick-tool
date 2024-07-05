@@ -11,13 +11,6 @@ import Modal from "../../components/modal/modal";
 import KakaoAdfit from "../../components/kakao/kakao";
 
 const BanPick = () => {
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.kakao && window.kakao.adfit) {
-      window.kakao.adfit.load();
-    }
-  }, []);
-
   // Team Name
   const params = useSearchParams();
   const [isTeamName, setIsTeamName] = useState({});
@@ -230,6 +223,13 @@ const BanPick = () => {
       <main className={style.main}>
         <div className={style.container}>
           <Modal show={showModal}>
+          <KakaoAdfit 
+              unit="DAN-WJYZrV1r7tht4Mo4"
+              width="300"
+              height="250"
+              className={style.ads}
+              insId="single_modal"
+            />
             <button className={style.close} onClick={closeModal}>
               시작하기
             </button>

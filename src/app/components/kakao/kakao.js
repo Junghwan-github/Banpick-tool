@@ -1,13 +1,25 @@
 "use client";
 import { useEffect } from "react";
-
 const KakaoAdfit = ({ unit, width, height, className, insId }) => {
   useEffect(() => {
-    if (typeof window !== "undefined" && window.kakao && window.kakao.adfit) {
+    const loadAdfitScript = () => {
+      const script = document.createElement("script");
+      script.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+      script.async = true;
+      script.onload = () => {
+        if (window.kakao && window.kakao.adfit) {
+          window.kakao.adfit.load();
+        }
+      };
+      document.head.appendChild(script);
+    };
+
+    if (typeof window !== "undefined" && !window.kakao?.adfit) {
+      loadAdfitScript();
+    } else if (window.kakao?.adfit) {
       window.kakao.adfit.load();
     }
-  }, []);
-
+  }, [unit]);
   return (
     <div className={className}>
       <ins
@@ -18,6 +30,7 @@ const KakaoAdfit = ({ unit, width, height, className, insId }) => {
         data-ad-width={width}
         data-ad-height={height}
       ></ins>
+      
     </div>
   );
 };
